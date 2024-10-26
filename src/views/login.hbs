@@ -1,0 +1,19 @@
+ <main>
+    <div class="container w-50 mx-auto bg-white text-dark rounded h-75">
+    <div class="w-50 mt-5 d-flex flex-column my-2 mx-auto">
+        <img class="w-25 mx-auto my-4" src="/img/icon-user.svg" alt="">
+        <h1 class="text-center">Iniciar Sesión</h1>
+        <form action="/login" method="POST">
+            <div>
+                <label for="Email" class="form-label">Email</label>
+            <input type="email" id="Email" name="Email" class="form-control" required>   
+            </div>
+            <div>
+                <label for="Contrasena" class="form-label">Contraseña</label>
+                <input type="password" id="Contrasena" name="Contrasena" class="form-control" required>    
+            </div>           
+            <button type="submit" class="btn btn-primary my-4 w-100">Ingresar</button>
+        </form>
+        </div>
+    </div>
+</main>

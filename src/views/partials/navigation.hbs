@@ -1,0 +1,53 @@
+
+<nav class="navbar navbar-expand-lg custom-navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+        <img class="card-img-top mx-auto m-s" src="/img/pc.svg" alt="Logo" style="width: 60px; heigth: 60px;display:block;">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text_navbar" href="/">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text_navbar" href="/listCliente">Clientes</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text_navbar" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Productos
+          </a>
+          <ul class="dropdown-menu div2">
+            <li><a class="dropdown-item text_navbar" href="/listCategoria">Categorias</a></li>
+            <li><a class="dropdown-item text_navbar" href="/listProducto">Productos</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text_navbar" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Ventas
+          </a>
+          <ul class="dropdown-menu div2">
+            <li><a class="dropdown-item text_navbar" href="/registrar-venta">Nueva Venta</a></li>
+            <li><a class="dropdown-item text_navbar" href="/reporte-ventas">Reporte Ventas</a></li>
+            <li><a class="dropdown-item text_navbar" href="/listPago">Pagos</a></li>
+            <li><a class="dropdown-item text_navbar" href="/listVenta">Lista de ventas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text_navbar" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Parametros
+          </a>
+          <ul class="dropdown-menu div2">
+            <li><a class="dropdown-item text_navbar" href="/listBanco">Bancos</a></li>
+            <li><a class="dropdown-item text_navbar" href="/listUsuario">Usuarios</a></li>
+          </ul>
+        </li> 
+        <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>       
+      </ul>
+    </div>
+  </div>
+</nav>
+
+

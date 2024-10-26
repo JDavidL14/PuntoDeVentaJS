@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row mt-2">
+        <h3 class="text-center text-uppercase p-3">Lista de Categorías</h3>
+        <div class="p-3">
+            <a href="/addCategoria" class="btn btn-primary">Registrar Categoría</a>
+        </div>
+        
+        {{#if categorias}}
+        
+            <table class="table text-center">
+                <thead>
+                    <tr class="table-dark">
+                        <th scope="col">Código</th>
+                        <th scope="col">Nombre de la Categoría</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Editar/Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each categorias}}
+                        <tr>
+                            <td>{{ CategoriaID }}</td>
+                            <td>{{ NombreCategoria }}</td>
+                            <td>{{ Descripcion }}</td>
+                            <td>
+                                <div>
+                                    <a href="/editCategoria/{{CategoriaID}}" class="p-2">
+                                    <i class="fa-solid fa-pen-to-square" style="color: #514d1f;"></i></a>
+                                    <a href="/deleteCategoria/{{CategoriaID}}" class="p-2">
+                                    <i class="fa-solid fa-user-minus" style="color: #691c1c;"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+        {{else}}
+            <div class="card text-center mx-auto" style="width: 350px;">
+                <div class="card-header">
+                    <h3>Debes registrar una categoría</h3>
+                </div>
+                <div class="card-body">
+                    <p>Presiona para registrar una categoría</p>
+                    <a href="/addCategoria" class="btn btn-primary">Registrar</a>
+                </div>
+
+        {{/if}}
+    </div>
+</div>

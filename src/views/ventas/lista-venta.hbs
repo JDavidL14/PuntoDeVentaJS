@@ -1,0 +1,33 @@
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Lista de Ventas</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID Venta</th>
+                <th>ID Cliente</th>
+                <th>Fecha y Hora</th>
+                <th>Forma de Pago</th>
+                <th>Total (Q)</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each ventas}}
+            <tr>
+                <td>{{this.VentaID}}</td>
+                <td>{{this.ClienteID}}</td>
+                <td>{{this.FechaHora}}</td>
+                <td>{{this.FormaPago}}</td>
+                <td>{{this.Total}}</td>
+                <td>
+                    <a href="/detalles-venta/{{this.VentaID}}" class="btn btn-info btn-sm">Detalles</a>
+                </td>
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="6" class="text-center">No hay ventas registradas</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

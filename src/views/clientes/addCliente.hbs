@@ -1,0 +1,70 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3 class="text-uppercase">Registrar Cliente</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/addCliente" method="post">
+
+                        <div class="input-group mt-2">
+                            <label for="nombre" class="input-group-text">Nombre</label>
+                            <input class="form-control" type="text" name="Nombre" id="nombre" placeholder="Nombre del cliente" required>
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <label for="direccion" class="input-group-text">Dirección</label>
+                            <input class="form-control" type="text" name="Direccion" id="direccion" placeholder="Dirección">
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <label for="telefono" class="input-group-text">Teléfono</label>
+                            <input class="form-control" type="text" name="Telefono" id="telefono" placeholder="Teléfono">
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <label for="correo" class="input-group-text">Correo Electrónico</label>
+                            <input class="form-control" type="email" name="Correo" id="correo" placeholder="Correo electrónico">
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <label for="sexo" class="input-group-text">Sexo</label>
+                            <select class="form-control" name="Sexo" id="sexo" required>
+                                <option value="" disabled selected>Seleccione</option>
+                                <option value="M">Masculino</option>
+                                <option value="F">Femenino</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <label for="nit" class="input-group-text">NIT</label>
+                            <input class="form-control" type="text" name="NIT" id="nit" placeholder="NIT">
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <label for="cui" class="input-group-text">CUI</label>
+                            <input class="form-control" type="text" name="CUI" id="cui" placeholder="CUI">
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <label for="seguroMedico" class="input-group-text">Seguro Médico</label>
+                            <input class="form-control" type="text" name="SeguroMedico" id="seguroMedico" placeholder="Seguro Médico">
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <label for="numeroPoliza" class="input-group-text">Número de Póliza</label>
+                            <input class="form-control" type="text" name="NumeroPoliza" id="numeroPoliza" placeholder="Número de póliza">
+                        </div>
+
+                        <div class="form-group mt-4 d-grid gap-2">
+                            <button class="btn btn-success">Crear Cliente</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

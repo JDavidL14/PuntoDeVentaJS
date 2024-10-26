@@ -1,0 +1,26 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Precio Unitario</th>
+            <th scope="col">Impuesto</th>
+            <th scope="col">Descuento</th>
+            <th scope="col">Número de Serie</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each detalles}}
+        <tr>
+            <td>{{this.DetalleVentaID}}</td>
+            <td>{{this.NombreProducto}}</td>
+            <td>{{this.Cantidad}}</td>
+            <td>{{this.PrecioUnitario}}</td>
+            <td>{{this.Impuesto}}</td>
+            <td>{{this.Descuento}}</td>
+            <td>{{this.NumeroSerie}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

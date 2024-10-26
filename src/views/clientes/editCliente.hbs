@@ -1,0 +1,75 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3 class="text-uppercase">Editar Cliente</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/editCliente/{{cliente.ClienteID}}" method="post">
+
+                        <div class="input-group mt-2">
+                            <label for="ClienteID" class="input-group-text">Código</label>
+                            <input class="form-control" type="text" name="ClienteID" id="ClienteID" value="{{cliente.ClienteID}}" disabled>
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <label for="Nombre" class="input-group-text">Nombre</label>
+                            <input class="form-control" type="text" name="Nombre" id="Nombre" value="{{cliente.Nombre}}" placeholder="Nombre del cliente" required>
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <label for="Direccion" class="input-group-text">Dirección</label>
+                            <input class="form-control" type="text" name="Direccion" id="Direccion" value="{{cliente.Direccion}}" placeholder="Dirección">
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <label for="Telefono" class="input-group-text">Teléfono</label>
+                            <input class="form-control" type="text" name="Telefono" id="Telefono" value="{{cliente.Telefono}}" placeholder="Teléfono">
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <label for="Correo" class="input-group-text">Correo Electrónico</label>
+                            <input class="form-control" type="email" name="Correo" id="Correo" value="{{cliente.Correo}}" placeholder="Correo electrónico">
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <label for="Sexo" class="input-group-text">Sexo</label>
+                            <select class="form-control" name="Sexo" id="Sexo" required>
+                                <option value="" disabled {{#if (eq cliente.Sexo "")}}selected{{/if}}>Seleccione</option>
+                                <option value="M" {{#if (eq cliente.Sexo 'M')}}selected{{/if}}>Masculino</option>
+                                <option value="F" {{#if (eq cliente.Sexo 'F')}}selected{{/if}}>Femenino</option>
+                                <option value="Otro" {{#if (eq cliente.Sexo 'Otro')}}selected{{/if}}>Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <label for="NIT" class="input-group-text">NIT</label>
+                            <input class="form-control" type="text" name="NIT" id="NIT" value="{{cliente.NIT}}" placeholder="NIT">
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <label for="CUI" class="input-group-text">CUI</label>
+                            <input class="form-control" type="text" name="CUI" id="CUI" value="{{cliente.CUI}}" placeholder="CUI">
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <label for="SeguroMedico" class="input-group-text">Seguro Médico</label>
+                            <input class="form-control" type="text" name="SeguroMedico" id="SeguroMedico" value="{{cliente.SeguroMedico}}" placeholder="Seguro Médico">
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <label for="NumeroPoliza" class="input-group-text">Número de Póliza</label>
+                            <input class="form-control" type="text" name="NumeroPoliza" id="NumeroPoliza" value="{{cliente.NumeroPoliza}}" placeholder="Número de Póliza">
+                        </div>
+
+                        <div class="form-group mt-4 d-grid gap-2">
+                            <button class="btn btn-success">Actualizar</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

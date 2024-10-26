@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row mt-2">
+        <h3 class="text-center text-uppercase p-3">Lista de Usuarios</h3>
+        <div class="p-3">
+            <a href="/addUsuario" class="btn btn-primary">Registrar Usuario</a>
+        </div>
+        
+        {{#if usuarios}}
+        
+            <table class="table text-center">
+                <thead>
+                    <tr class="table-dark">
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre de Usuario</th>
+                        <th scope="col">Nombre Completo</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col">Editar/Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each usuarios}}
+                        <tr>
+                            <td>{{ Id }}</td>
+                            <td>{{ NombreUsuario }}</td>
+                            <td>{{ Nombre }} {{ Apellido }}</td>
+                            <td>{{ Email }}</td>
+                            <td>{{ Telefono }}</td>
+                            <td>{{ Rol }}</td>
+                            <td>
+                                <div>
+                                    <a href="/editUsuario/{{Id}}" class="p-2">
+                                    <i class="fa-solid fa-pen-to-square" style="color: #514d1f;"></i></a>
+                                    <a href="/deleteUsuario/{{Id}}" class="p-2">
+                                    <i class="fa-solid fa-user-minus" style="color: #691c1c;"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+        {{else}}
+            <div class="card text-center mx-auto" style="width: 350px;">
+                <div class="card-header">
+                    <h3>No hay usuarios registrados</h3>
+                </div>
+                <div class="card-body">
+                    <p>Presiona para registrar un usuario</p>
+                    <a href="/addUsuario" class="btn btn-primary">Registrar</a>
+                </div>
+
+        {{/if}}
+    </div>
+</div>

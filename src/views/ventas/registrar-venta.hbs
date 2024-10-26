@@ -1,0 +1,151 @@
+<div class="container mt-5">
+  <div class="card mx-auto" style="max-width: 800px;">
+    <div class="card-body">
+      <h1 class="card-title text-center mb-4">Registrar Venta</h1>
+
+      <!-- Asegúrate de que el atributo action esté configurado -->
+      <form method="post" action="/addVenta" onsubmit="actualizarCampoProductos()">
+        <!-- ClienteID -->
+        <div class="mb-3">
+          <label for="ClienteID" class="form-label">ID del Cliente</label>
+          <input type="number" class="form-control" id="ClienteID" name="ClienteID" required>
+        </div>
+
+        <!-- Forma de Pago -->
+        <div class="mb-3">
+          <label for="FormaPago" class="form-label">Forma de Pago</label>
+          <select class="form-select" id="FormaPago" name="FormaPago" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Efectivo">Efectivo</option>
+            <option value="Tarjeta">Tarjeta</option>
+            <option value="Transferencia">Transferencia</option>
+          </select>
+        </div>
+
+        <!-- Búsqueda de Producto -->
+        <div>
+          <label for="productoSearch" class="form-label">Código del Producto</label>
+          <div class="input-group">
+            <input type="text" id="productoSearch" class="form-control" placeholder="Ingresar código de producto" aria-label="Buscar producto" />
+            <button type="button" class="btn btn-primary" id="buscarProductoBtn" onclick="buscarProducto()">Buscar Producto</button>
+          </div>
+        </div>
+
+        <!-- Tabla de Productos Comprados -->
+        <h5>Productos Comprados</h5>
+        <table class="table table-bordered" id="productsTable">
+          <thead>
+            <tr>
+              <th>ID Producto</th>
+              <th>Nombre Producto</th>
+              <th>Cantidad</th>
+              <th>Precio Unitario</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="selectedProducts">
+            <!-- Aquí se agregarán las filas de productos -->
+          </tbody>
+        </table>
+
+        <!-- Campo oculto para enviar los productos -->
+        <input type="hidden" id="productos" name="productos" />
+
+        <!-- Total -->
+        <div class="mb-3">
+          <label for="Total" class="form-label">Total (Q)</label>
+          <input type="number" class="form-control" id="Total" name="Total" step="0.01" readonly>
+        </div>
+
+        <!-- Botón de Enviar -->
+        <div class="form-group mt-4 d-grid gap-2">
+          <button type="submit" class="btn btn-success">Registrar Venta</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  async function buscarProducto() {
+    const searchValue = document.getElementById('productoSearch').value;
+    if (!searchValue || searchValue.length < 1) {
+      alert('Por favor, ingrese un código de producto.');
+      return;
+    }
+
+    try {
+      const response = await fetch(`/buscar-producto/${searchValue}`);
+      if (!response.ok) {
+        alert('Producto no encontrado.');
+        return;
+      }
+
+      const product = await response.json();
+      console.log('Producto encontrado:', product); // Agrega este log
+
+      if (product) {
+        addProduct(product);
+      } else {
+        alert('Producto no encontrado.');
+      }
+    } catch (error) {
+      console.error('Error al buscar el producto:', error);
+    }
+  }
+
+  function addProduct(product) {
+    const selectedProducts = document.getElementById('selectedProducts');
+    const newRow = document.createElement('tr');
+    const precio = parseFloat(product.Precio); // Asegúrate de convertir a número
+    newRow.innerHTML = `
+      <td>${product.ProductoID}</td>
+      <td>${product.Nombre}</td>
+      <td><input type="number" value="1" min="1" class="form-control" onchange="updateTotal()"></td>
+      <td>${precio.toFixed(2)}</td>
+      <td><button class="btn btn-danger btn-sm" onclick="removeProduct(this)">Eliminar</button></td>
+    `;
+    selectedProducts.appendChild(newRow);
+    updateTotal();
+  }
+
+  function updateTotal() {
+    const selectedProducts = document.getElementById('selectedProducts');
+    let total = 0;
+    selectedProducts.querySelectorAll('tr').forEach(row => {
+      const quantity = row.querySelector('input[type="number"]').value;
+      const price = parseFloat(row.cells[3].textContent);
+      total += quantity * price;
+    });
+
+    document.getElementById('Total').value = total.toFixed(2);
+  }
+
+  function removeProduct(button) {
+    button.closest('tr').remove();
+    updateTotal();
+  }
+
+  function actualizarCampoProductos() {
+    const rows = document.querySelectorAll('#selectedProducts tr');
+    const productos = [];
+
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      const producto = {
+        ProductoID: cells[0].textContent.trim(),
+        Cantidad: row.querySelector('input[type="number"]').value,
+        PrecioUnitario: cells[3].textContent.trim(),
+      };
+      productos.push(producto);
+    });
+
+    // Asegúrate de que 'productos' sea un arreglo
+    if (productos.length > 0) {
+      // Asigna el JSON al campo oculto
+      document.getElementById('productos').value = JSON.stringify(productos);
+    } else {
+      document.getElementById('productos').value = '[]'; // Envía un arreglo vacío si no hay productos
+    }
+  }
+</script>

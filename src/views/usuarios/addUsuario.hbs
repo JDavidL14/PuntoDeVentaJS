@@ -1,0 +1,63 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3 class="text-uppercase">Registrar Usuario</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/addUsuario" method="post">
+
+                        <!-- Campo para Nombre de Usuario -->
+                        <div class="input-group mt-2">
+                            <label for="nombreUsuario" class="input-group-text">Nombre de Usuario</label>
+                            <input class="form-control" type="text" name="NombreUsuario" id="nombreUsuario" placeholder="Nombre de usuario" required>
+                        </div>
+
+                        <!-- Campo para Contraseña -->
+                        <div class="input-group mt-2">
+                            <label for="contrasena" class="input-group-text">Contraseña</label>
+                            <input class="form-control" type="password" name="Contrasena" id="contrasena" placeholder="Contraseña" required>
+                        </div>
+
+                        <!-- Campo para Rol -->
+                        <div class="input-group mt-2">
+                            <label for="rol" class="input-group-text">Rol</label>
+                            <input class="form-control" type="text" name="Rol" id="rol" placeholder="Rol de usuario" required>
+                        </div>
+
+                        <!-- Campo para Nombre -->
+                        <div class="input-group mt-2">
+                            <label for="nombre" class="input-group-text">Nombre</label>
+                            <input class="form-control" type="text" name="Nombre" id="nombre" placeholder="Nombre" required>
+                        </div>
+
+                        <!-- Campo para Apellido -->
+                        <div class="input-group mt-2">
+                            <label for="apellido" class="input-group-text">Apellido</label>
+                            <input class="form-control" type="text" name="Apellido" id="apellido" placeholder="Apellido" required>
+                        </div>
+
+                        <!-- Campo para Email -->
+                        <div class="input-group mt-2">
+                            <label for="email" class="input-group-text">Email</label>
+                            <input class="form-control" type="email" name="Email" id="email" placeholder="Correo electrónico" required>
+                        </div>
+
+                        <!-- Campo para Teléfono (opcional) -->
+                        <div class="input-group mt-2">
+                            <label for="telefono" class="input-group-text">Teléfono</label>
+                            <input class="form-control" type="text" name="Telefono" id="telefono" placeholder="Teléfono">
+                        </div>
+
+                        <!-- Botón para registrar usuario -->
+                        <div class="form-group mt-4 d-grid gap-2">
+                            <button class="btn btn-success">Crear Usuario</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

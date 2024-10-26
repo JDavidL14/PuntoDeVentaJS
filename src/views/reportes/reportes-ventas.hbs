@@ -1,0 +1,174 @@
+<div class="container p-4 text-center">
+    <div class="card-header">
+        <h1 class="text-uppercase">Reporte de Ventas</h1>
+    </div>
+    <div id="productoMasVendido" class="card mt-3 div3 ">
+        <div class="card-body">
+            <h3 class="card-title">Producto Más Vendido</h3>
+            <p class="card-text">Cargando...</p>
+        </div>
+    </div class="d-flex">
+        <div>
+            <div class="container border-3 w-50">
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <canvas id="ventasChart" width="400" height="200"></canvas>
+                <script>
+                    async function fetchVentasData() {
+                        try {
+                            const response = await fetch('/api/reporte-ventas');
+                            console.log(response)
+                            const data = await response.json();
+
+                            const fechas = data.map(item => {
+                            const date = new Date(item.Fecha); 
+                            const day = String(date.getDate()).padStart(2, '0'); 
+                            const month = String(date.getMonth() + 1).padStart(2, '0'); 
+                            const year = date.getFullYear();
+
+                            return `${day}-${month}-${year}`;
+                        });
+
+                            const totalVentas = data.map(item => item.TotalVentas);
+                            const ctx = document.getElementById('ventasChart').getContext('2d');
+                            new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: fechas,
+                                    datasets: [{
+                                        label: 'Reporte de ventas fecha',
+                                        data: totalVentas,
+                                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                                        borderColor: 'rgba(54, 162, 235, 1)',
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        x: {
+                                            grid: {
+                                                color: 'rgba(255, 255, 255, 0.3)' // Color del grid del eje X
+                                            },
+                                            ticks: {
+                                                color: 'white' // Color de las etiquetas del eje X
+                                            }
+                                        },
+                                        y: {
+                                            beginAtZero: true,
+                                            grid: {
+                                                color: 'rgba(255, 255, 255, 0.3)' // Color del grid del eje Y
+                                            },
+                                            ticks: {
+                                                color: 'white' // Color de las etiquetas del eje Y
+                                            }
+                                        }
+                                    },
+                                    plugins: {
+                                        legend: {
+                                            labels: {
+                                                color: 'white' // Color de las etiquetas de la leyenda
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                        } catch (error) {
+                            console.error("Error al obtener los datos de ventas:", error);
+                        }
+                    }
+
+                    fetchVentasData();
+                </script>
+            </div>
+            <div class="container border-3 w-50">
+            <!-- Enlaza Chart.js -->
+            <script>
+
+                async function fetchProductoMasVendido() {
+                    try {
+                        const response = await fetch('/api/producto-mas-vendido');
+                        const data = await response.json();
+
+                        const producto = data[0]; // Suponiendo que hay al menos un producto
+                        document.getElementById('productoMasVendido').innerHTML = `
+                            <h3>Producto Más Vendido</h3>
+                            <p><strong>Nombre:</strong> ${producto.Descripcion}</p>
+                            <p><strong>Código:</strong> ${producto.ProductoID}</p>
+                            <p><strong>Total Vendido:</strong> ${producto.TotalVendidos} veces</p>
+                        `;
+                    } catch (error) {
+                        console.error("Error al obtener el producto más vendido:", error);
+                    }
+                }
+                fetchProductoMasVendido();
+            </script>
+            <div>
+                <canvas id="unidadesVendidasPorCategoriaChart" width="400" height="200"></canvas>
+
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script>
+                    async function fetchUnidadesVendidasPorCategoria() {
+                        try {
+                            const response = await fetch('/api/unidades-vendidas-por-categoria');
+                            console.log(response)
+                            const data = await response.json();
+
+                            const categorias = data.map(item => item.Categorias);
+                            const totalUnidadesVendidas = data.map(item => item.TotalUnidadesVendidas);
+
+                            const ctx = document.getElementById('unidadesVendidasPorCategoriaChart').getContext('2d');
+                            new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: categorias,
+                                    datasets: [{
+                                        label: 'Total Unidades Vendidas por Categoría',
+                                        data: totalUnidadesVendidas,
+                                        backgroundColor: 'rgba(153, 102, 255, 0.6)',
+                                        borderColor: 'rgba(153, 102, 255, 1)',
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        x: {
+                                            grid: {
+                                                color: 'rgba(255, 255, 255, 0.3)' // Color del grid del eje X
+                                            },
+                                            ticks: {
+                                                color: 'white' // Color de las etiquetas del eje X
+                                            }
+                                        },
+                                        y: {
+                                            beginAtZero: true,
+                                            grid: {
+                                                color: 'rgba(255, 255, 255, 0.3)' // Color del grid del eje Y
+                                            },
+                                            ticks: {
+                                                color: 'white' // Color de las etiquetas del eje Y
+                                            }
+                                        }
+                                    },
+                                    plugins: {
+                                        legend: {
+                                            labels: {
+                                                color: 'white' // Color de las etiquetas de la leyenda
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                        } catch (error) {
+                            console.error("Error al obtener los datos de unidades vendidas por categoría:", error);
+                        }
+                    }
+
+                    fetchUnidadesVendidasPorCategoria();
+                </script>
+            </div>
+
+            <canvas id="productoMasVendidoChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+    
+</div>
+
